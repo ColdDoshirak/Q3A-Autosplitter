@@ -8,7 +8,7 @@ ASL script (`Q3A_ASLR.asl`) for speedrunning the Quake III Arena single player c
 - **Auto splits** — splits when each next campaign map starts.
 - **Finish** — the final split triggers when you reach 10 frags on Q3TOURNEY6 (Xaero).
 - **Load removal** — Game Time is paused while a map is loading.
-- **Auto reset** — the run resets when you press **RESET** in the Single Player menu (save wipe).
+- **Auto reset** — the run resets when you press **RESET** in the Single Player menu (save wipe) or start DM0 again.
 
 ## Supported versions
 
@@ -25,7 +25,7 @@ ASL script (`Q3A_ASLR.asl`) for speedrunning the Quake III Arena single player c
 1. Download `Q3A_ASLR.asl`.
 2. In LiveSplit: right click → **Edit Layout…** → **+** → **Control** → **Scriptable Auto Splitter**.
 3. Open the component settings (**Layout Settings** → **Scriptable Auto Splitter** tab) and set **Script Path** to `Q3A_ASLR.asl`.
-4. Make sure **Start**, **Split** and **Reset** are checked.
+4. Make sure **Start** and **Split** are checked.
 
 ## Splits setup
 
@@ -58,11 +58,12 @@ To exclude loading times, switch LiveSplit to Game Time:
 
 ## Auto reset
 
-If you press **RESET** in the **Single Player** menu and confirm wiping the save, the current LiveSplit run is reset.
+The run is reset automatically (including a finished run):
 
-- The save must contain progress (at least one map completed) for the reset to trigger.
-- Can be disabled with the **Reset when Single Player save is reset** checkbox in the script settings.
-- If the reset didn't trigger, reset the timer manually.
+- **Save wipe** — when you press **RESET** in the **Single Player** menu and confirm wiping the save. The save must contain progress (at least one map completed): wiping an already empty save changes nothing in the game and can't be detected. Setting: **Reset when Single Player save is reset**.
+- **DM0 restart** — when DM0 is loaded again. This covers quitting DM0 to the menu and starting it over; the new run starts right away. Setting: **Reset when DM0 is loaded again**.
+
+Both can be disabled in the script settings. The LiveSplit **Reset** checkbox doesn't affect them.
 
 ## How it works
 
@@ -77,7 +78,7 @@ For the reset, the script watches `baseq3\q3config.cfg` in the game folder. It s
 ## Credits
 
 - **Original script** (auto splits, auto start, load removal, memory addresses): **liveth** — [resource on speedrun.com](https://www.speedrun.com/quake_3_arena/resources/644it). All rights to the original code belong to its author.
-- **Modification**: auto reset on Single Player save wipe, README.
+- **Modification**: auto reset on Single Player save wipe and DM0 restart, README.
 
 ## Known limitations
 
