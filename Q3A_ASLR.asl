@@ -61,6 +61,7 @@ startup
 	settings.Add("q3tourney6.bsp", true, "T6");
 	settings.Add("resetOnSaveWipe", true, "Reset when Single Player save is reset (RESET button in SP menu)");
 	settings.Add("resetOnDm0", true, "Reset when DM0 is loaded again (restarting the run)");
+	settings.Add("startAnyMap", false, "Start on any map, not only DM0 (practice)");
 
 }
 
@@ -161,13 +162,10 @@ update
 
 start
 {
-	if (current.loading == 8) {
-		vars.visited.Clear();
-		vars.visited.Add("q3dm0.bsp");
-		return true;
-	}
-
-	if (current.loading2 == 8) {
+	// Start only at the moment a map is entered, so a manual reset while in game
+	// doesn't start the timer again right away
+	if ((old.loading != 8 && current.loading == 8 && (current.bsp == "q3dm0.bsp" || settings["startAnyMap"])) ||
+		(old.loading2 != 8 && current.loading2 == 8 && (current.bsp2 == "q3dm0.bsp" || settings["startAnyMap"]))) {
 		vars.visited.Clear();
 		vars.visited.Add("q3dm0.bsp");
 		return true;

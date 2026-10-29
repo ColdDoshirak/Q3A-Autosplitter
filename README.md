@@ -4,7 +4,7 @@ ASL script (`Q3A_ASLR.asl`) for speedrunning the Quake III Arena single player c
 
 ## Features
 
-- **Auto start** — the timer starts as soon as you spawn on the first map.
+- **Auto start** — the timer starts when DM0 is loaded (optionally any map, for practice).
 - **Auto splits** — splits when each next campaign map starts.
 - **Finish** — the final split triggers when you reach 10 frags on Q3TOURNEY6 (Xaero).
 - **Load removal** — Game Time is paused while a map is loading.
@@ -56,6 +56,12 @@ To exclude loading times, switch LiveSplit to Game Time:
    - **Splits** tab: set every **Timing Method** to **Game Time**;
    - **Timer** tab: set **Timing Method** to **Game Time**.
 
+## Auto start
+
+The timer starts at the moment DM0 finishes loading. A manual reset while you're in game won't start the timer again until DM0 is loaded.
+
+To practice from the middle of the campaign, enable **Start on any map (practice)** — the timer will then start on entering any map.
+
 ## Auto reset
 
 The run is reset automatically (including a finished run):
@@ -82,6 +88,6 @@ For the reset, the script watches `baseq3\q3config.cfg` in the game folder. It s
 
 ## Known limitations
 
-- The timer starts on **any** map load (not only DM0). If you reset the run while on a map, the timer starts again immediately. Go to the menu before resetting.
+- With **Start on any map (practice)** enabled, splits always count from DM1, so they won't match the maps if you start mid-campaign.
 - Addresses for different game versions are checked simultaneously. On some builds this could theoretically cause false pauses or starts.
 - The reset only works if `q3config.cfg` is located in the `baseq3` folder next to `quake3.exe`.
